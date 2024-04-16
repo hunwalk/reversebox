@@ -1,4 +1,4 @@
-alias php='~/.local/bin/php.sh'
+alias php='~/.local/bin/php.sh php'
 alias composer='~/.local/bin/php.sh composer'
 alias node='~/.local/bin/nodejs.sh node'
 alias npm='~/.local/bin/nodejs.sh npm'
