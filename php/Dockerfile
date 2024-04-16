@@ -21,7 +21,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 RUN useradd -G www-data,root -u 1000 -d /home/hunwalk hunwalk
 
 # Set working directory
-WORKDIR /home/hunwalk
+WORKDIR ${HOME_MOUNT}
 
 # Copy existing application directory contents
 USER hunwalk
