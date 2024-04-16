@@ -46,8 +46,8 @@ cp -r ~/reversebox/bin/* ~/.local/bin/
 chmod +x ~/.local/bin/*
 
 # Copy .env.file contents to .env
-echo "Copying .env.file contents to .env..."
-cp ~/reversebox/.env.file ~/reversebox/.env
+echo "Copying .env.example contents to .env..."
+cp ~/reversebox/.env.example ~/reversebox/.env
 
 # Get directory route to ~ and update HOME_MOUNT in .env file
 echo "Updating HOME_MOUNT in .env file..."
