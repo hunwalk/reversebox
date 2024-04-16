@@ -4,6 +4,8 @@ services:
     build:
       context: .
       dockerfile: ./php/Dockerfile
+      args:
+        - PHP_TAG=${PHP_TAG}
     container_name: reversebox-php
     volumes:
       - ${HOME_MOUNT}:${HOME_MOUNT}
