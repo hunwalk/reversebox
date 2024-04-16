@@ -15,10 +15,10 @@ fi
 # Check if docker-compose or docker compose is available
 if command -v docker-compose &> /dev/null; then
     DOCKER_COMPOSE_COMMAND="docker-compose"
-elif command -v docker-compose &> /dev/null; then
+elif command -v docker compose &> /dev/null; then
     DOCKER_COMPOSE_COMMAND="docker compose"
 else
-    echo "Error: docker-compose is not installed. Please install docker-compose before running this script."
+    echo "Error: docker compose is not installed. Please install docker compose before running this script."
     exit 1
 fi
 
