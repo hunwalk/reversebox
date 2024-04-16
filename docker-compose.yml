@@ -12,6 +12,19 @@ services:
     networks:
       - proxynet
 
+  nodejs:
+    build:
+      context: .
+      dockerfile: ./nodejs/Dockerfile
+    container_name: reversebox-nodejs
+    volumes:
+      - ${HOME_MOUNT}:${HOME_MOUNT}
+    working_dir: ${HOME_MOUNT}
+    user: 1000:1000
+    restart: unless-stopped
+    command: tail -f /dev/null
+    network_mode: host
+
   traefik:
     image: "traefik:latest"
     container_name: "traefik"
