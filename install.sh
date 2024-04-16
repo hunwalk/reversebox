@@ -12,6 +12,16 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
+# Check if docker-compose or docker compose is available
+if command -v docker-compose &> /dev/null; then
+    DOCKER_COMPOSE_COMMAND="docker-compose"
+elif command -v docker-compose &> /dev/null; then
+    DOCKER_COMPOSE_COMMAND="docker compose"
+else
+    echo "Error: docker-compose is not installed. Please install docker-compose before running this script."
+    exit 1
+fi
+
 # Clone the repository
 echo "Cloning repository..."
 git clone https://github.com/hunwalk/reversebox ~/reversebox
@@ -30,9 +40,10 @@ fi
 # Create ~/.local/bin folder if it does not exist
 mkdir -p ~/.local/bin
 
-# Copy contents of bin folder from repo to ~/.local/bin
-echo "Copying contents of bin folder to ~/.local/bin..."
+# Copy contents of bin folder from repo to ~/.local/bin and chmod +x
+echo "Copying and chmod +x contents of bin folder to ~/.local/bin..."
 cp -r ~/reversebox/bin/* ~/.local/bin/
+chmod +x ~/.local/bin/*
 
 # Copy .env.file contents to .env
 echo "Copying .env.file contents to .env..."
@@ -51,6 +62,6 @@ fi
 echo "Sourcing .bash_aliases..."
 source ~/.bash_aliases
 
-# Run docker-compose up -d inside ~/reversebox
-echo "Running docker-compose up -d inside ~/reversebox..."
-cd ~/reversebox && docker-compose up -d
+# Run docker-compose up -d inside ~/reversebox using the appropriate command
+echo "Running $DOCKER_COMPOSE_COMMAND up -d inside ~/reversebox..."
+cd ~/reversebox && $DOCKER_COMPOSE_COMMAND up -d
