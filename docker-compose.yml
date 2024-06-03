@@ -11,8 +11,7 @@ services:
       - ${HOME_MOUNT}:${HOME_MOUNT}
     working_dir: ${HOME_MOUNT}
     user: 1000:1000
-    networks:
-      - proxynet
+    network_mode: host
 
   nodejs:
     build:
@@ -43,6 +42,7 @@ services:
       - "traefik.http.routers.api.entrypoints=web"
     ports:
       - "80:80"
+      - "8080:8080"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     restart: unless-stopped
